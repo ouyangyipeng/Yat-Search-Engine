@@ -1,0 +1,46 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "g++.exe build all files",
+            "command": "D:\\Programm\\x86_64-8.1.0-release-posix-seh-rt_v6-rev0\\mingw64\\bin\\g++.exe",
+            "args": [
+                "-g",
+                "${workspaceFolder}/*.cpp",  // 这里编译所有的 .cpp 文件
+                "-o",
+                "${workspaceFolder}/output.exe"  // 指定输出文件名
+            ],
+            "options": {
+                "cwd": "D:/Programm/x86_64-8.1.0-release-posix-seh-rt_v6-rev0/mingw64/bin"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build"
+        },
+        {
+            "type": "cppbuild",
+            "label": "C/C++: g++.exe 生成所有文件",
+            "command": "D:\\Programm\\x86_64-8.1.0-release-posix-seh-rt_v6-rev0\\mingw64\\bin\\g++.exe",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g",
+                "${workspaceFolder}/*.cpp",  // 这里编译所有的 .cpp 文件
+                "-o",
+                "${workspaceFolder}/output.exe"  // 指定输出文件名
+            ],
+            "options": {
+                "cwd": "D:\\Programm\\x86_64-8.1.0-release-posix-seh-rt_v6-rev0\\mingw64\\bin"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "调试器生成的任务。"
+        }
+    ]
+}
