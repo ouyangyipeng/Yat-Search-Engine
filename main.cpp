@@ -35,7 +35,7 @@ int main()
     // std::wcin.imbue(std::locale("zh_CN.UTF-8"));
     // std::wcout.imbue(std::locale("zh_CN.UTF-8"));
 
-    std::ifstream infile("logo_out.txt");
+    std::ifstream infile("./logo&pic/logo_out.txt");
     if (infile.is_open())
     {
         std::string line;
@@ -59,7 +59,7 @@ int main()
     std::cout << "--------------------------请按回车以继续-----------------------------" << std::endl;
     std::cin.get();
 
-    std::ofstream logFile("query_log.txt", std::ios::app);
+    std::ofstream logFile("./log/query_log.txt", std::ios::app);
     TextSearchEngine engine;
 
     // 加载 source-text 文件夹中的多个文件

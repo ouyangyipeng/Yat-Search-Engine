@@ -11,7 +11,7 @@ void TextSearchEngine::saveIndex(const std::string &filepath)
     std::ofstream out(filepath, std::ios::binary);
     if (!out.is_open())
     {
-        std::ofstream logFile("query_log.txt", std::ios::app);
+        std::ofstream logFile("./log/query_log.txt", std::ios::app);
         logFile << "无法打开文件以保存索引: " << filepath << std::endl;
         logFile.close();
         return;
@@ -43,7 +43,7 @@ void TextSearchEngine::saveIndex(const std::string &filepath)
         }
     }
     out.close();
-    std::ofstream logFile("query_log.txt", std::ios::app);
+    std::ofstream logFile("./log/query_log.txt", std::ios::app);
     logFile << "索引已保存到 " << filepath << std::endl;
     logFile.close();
 }
@@ -53,7 +53,7 @@ void TextSearchEngine::loadIndex(const std::string &filepath)
     std::ifstream in(filepath, std::ios::binary);
     if (!in.is_open())
     {
-        std::ofstream logFile("query_log.txt", std::ios::app);
+        std::ofstream logFile("./log/query_log.txt", std::ios::app);
         logFile << "无法打开索引文件: " << filepath << std::endl;
         logFile.close();
         return;
@@ -95,7 +95,7 @@ void TextSearchEngine::loadIndex(const std::string &filepath)
         exactIndex[word] = sentVec; // 将 index[word] 修改为 exactIndex[word]
     }
     in.close();
-    std::ofstream logFile("query_log.txt", std::ios::app);
+    std::ofstream logFile("./log/query_log.txt", std::ios::app);
     logFile << "索引已从 " << filepath << " 加载" << std::endl;
     logFile.close();
 }
@@ -197,7 +197,7 @@ void TextSearchEngine::fuzzyQuery(const std::string &keyword)
         std::cout << "未找到模糊匹配 \"" << keyword << "\" 的结果." << std::endl;
     }
     // 记录日志
-    std::ofstream logFile("query_log.txt", std::ios::app);
+    std::ofstream logFile("./log/query_log.txt", std::ios::app);
     logFile << "模糊查询: " << keyword << " 执行完成" << std::endl;
     logFile.close();
 }

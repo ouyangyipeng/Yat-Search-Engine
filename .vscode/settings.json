@@ -49,6 +49,12 @@
         "functional": "cpp",
         "codecvt": "cpp",
         "chrono": "cpp",
-        "ratio": "cpp"
+        "ratio": "cpp",
+        "bit": "cpp",
+        "condition_variable": "cpp",
+        "numeric": "cpp",
+        "random": "cpp",
+        "shared_mutex": "cpp",
+        "cinttypes": "cpp"
     }
 }

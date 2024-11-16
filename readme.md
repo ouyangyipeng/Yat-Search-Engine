@@ -51,15 +51,21 @@ TextSearchEngine/
 
 ├── source-text/  // 存放文本文件
 
-│   ├── file1.txt
+│   ├── text1.txt
 
-│   ├── file2.txt
+│   ├── text2.txt
 
 │   └── ...  // 更多文本文件
 
-├── query_log.txt  // 查询操作日志
+├── log
 
-├── logo_out.txt  // logo输出文件
+│   └── query_log.txt  // 查询日志文件
+
+├── logo&pic
+
+│   ├── logo.txt  // 候选图标
+
+│   └── logo_out.txt  // 项目图标
 
 ├── main.cpp   // 主程序入口
 
