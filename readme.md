@@ -7,8 +7,6 @@
 ![Static Badge](https://img.shields.io/badge/Ouyang-Yipeng-blue)
 [![Forks](https://img.shields.io/github/forks/ouyangyipeng/Yat-Search-Engine)](https://github.com/ouyangyipeng/Yat-Search-Engine/network/members)
 [![Stars](https://img.shields.io/github/stars/ouyangyipeng/Yat-Search-Engine)](https://github.com/ouyangyipeng/Yat-Search-Engine/stargazers)
-[![Contributors](https://img.shields.io/github/contributors/ouyangyipeng/Yat-Search-Engine)](https://github.com/ouyangyipeng/Yat-Search-Engine/graphs/contributors)
-[![Build Status](https://img.shields.io/github/actions/workflow/status/ouyangyipeng/Yat-Search-Engine/build.yml?branch=main)](https://github.com/ouyangyipeng/Yat-Search-Engine/actions)
 [![Code Size](https://img.shields.io/github/languages/code-size/ouyangyipeng/Yat-Search-Engine)](https://github.com/ouyangyipeng/Yat-Search-Engine)
 [![Top Language](https://img.shields.io/github/languages/top/ouyangyipeng/Yat-Search-Engine)](https://github.com/ouyangyipeng/Yat-Search-Engine)
 [![Last Commit](https://img.shields.io/github/last-commit/ouyangyipeng/Yat-Search-Engine)](https://github.com/ouyangyipeng/Yat-Search-Engine/commits/main)
@@ -183,6 +181,10 @@ cmake --build .
 ## 贡献
 
 欢迎贡献代码和提出建议！请提交 Pull Request 或在 Issues 中反馈您的想法。
+
+<a href="https://github.com/ouyangyipeng/Yat-Search-Engine/graphs/contributors">
+    <img src="https://contrib.rocks/image?repo=ouyangyipeng/Yat-Search-Engine" />
+</a>
 
 ## 许可证
 
