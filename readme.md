@@ -131,6 +131,8 @@ Yat-Search Engine 是一个高效的文本搜索引擎，支持多文件加载�
 
 ### 克隆项目
 
+请确保在linux环境下运行，windows环境下可能会出现中文乱码问题。进入工作目录并克隆项目到本地：
+
  ```bash
 git clone https://github.com/ouyangyipeng/Yat-Search-Engine.git
 cd Yat-Search-Engine
