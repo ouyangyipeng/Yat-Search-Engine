@@ -160,7 +160,7 @@ int main()
             break;
         case 4:
             running = false;
-            engine.saveIndex("index.dat");
+            engine.saveIndex("./dat/index.dat");
             logFile << "退出程序" << std::endl;
             break;
         default:
