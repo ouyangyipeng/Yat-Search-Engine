@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/TextSearchEngine.dir/src/main.cpp.o CMakeFiles/TextSearchEngine.dir/src/TextSearchEngine.cpp.o CMakeFiles/TextSearchEngine.dir/src/RegexSearch.cpp.o  -o TextSearchEngine 
