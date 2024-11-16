@@ -43,52 +43,34 @@ Yat-Search Engine 是一个高效的文本搜索引擎，支持多文件加载�
 
 ## 项目结构
 
-Yat-Search-Engine/
+<pre>
 
-├── CMakeLists.txt
+└──Yat-Search-Engine
+    ├── CMakeLists.txt
+    ├── LICENSE
+    ├── dat
+    │       └── index.dat
+    ├── include
+    │       ├── RegexSearch.h
+    │       └── TextSearchEngine.h
+    ├── log
+    │       └── query_log.txt
+    ├── logo_pic
+    │       ├── logo.txt
+    │       └── logo_out.txt
+    ├── readme.md
+    ├── source-text
+    │       ├── bible.txt
+    │       ├── text1.txt
+    │       ├── text2.txt
+    │       └── otherfile...
+    └── src
+        ├── RegexSearch.cpp
+        ├── TextSearchEngine.cpp
+        └── main.cpp
 
-├── LICENSE
-
-├── dat
-
-│   └── index.dat
-
-├── include
-
-│   ├── RegexSearch.h
-
-│   └── TextSearchEngine.h
-
-├── log
-
-│   └── query_log.txt
-
-├── logo_pic
-
-│   ├── logo.txt
-
-│   └── logo_out.txt
-
-├── readme.md
-
-├── source-text
-
-│   ├── bible.txt
-
-│   ├── text1.txt
-
-│   ├── text2.txt
-
-│   └── otherfile...
-
-└── src
-
-    ├── RegexSearch.cpp
-
-    ├── TextSearchEngine.cpp
-
-    └── main.cpp
-
+</pre>
+    
 ## 功能改进过程(TODO)
 
 ### 基础功能
