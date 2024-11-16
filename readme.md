@@ -1,8 +1,25 @@
 # Yat-Search Engine 文本搜索引擎
 
+> *Searching Engine from Sun Yat-sen University*
+
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/ouyangyipeng/Yat-Search-Engine/blob/main/LICENSE)
+![Static Badge](https://img.shields.io/badge/Sun_Yat_sen-University-green)
+![Static Badge](https://img.shields.io/badge/Ouyang-Yipeng-blue)
+[![Forks](https://img.shields.io/github/forks/ouyangyipeng/Yat-Search-Engine)](https://github.com/ouyangyipeng/Yat-Search-Engine/network/members)
+[![Stars](https://img.shields.io/github/stars/ouyangyipeng/Yat-Search-Engine)](https://github.com/ouyangyipeng/Yat-Search-Engine/stargazers)
+[![Contributors](https://img.shields.io/github/contributors/ouyangyipeng/Yat-Search-Engine)](https://github.com/ouyangyipeng/Yat-Search-Engine/graphs/contributors)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/ouyangyipeng/Yat-Search-Engine/build.yml?branch=main)](https://github.com/ouyangyipeng/Yat-Search-Engine/actions)
+[![Code Size](https://img.shields.io/github/languages/code-size/ouyangyipeng/Yat-Search-Engine)](https://github.com/ouyangyipeng/Yat-Search-Engine)
+[![Top Language](https://img.shields.io/github/languages/top/ouyangyipeng/Yat-Search-Engine)](https://github.com/ouyangyipeng/Yat-Search-Engine)
+[![Last Commit](https://img.shields.io/github/last-commit/ouyangyipeng/Yat-Search-Engine)](https://github.com/ouyangyipeng/Yat-Search-Engine/commits/main)
+
 ## 项目简介
 
-Yat-Search Engine 是一个高效的文本搜索引擎，支持多文件加载、精确查询、模糊查询和正则表达式查询等功能。该项目旨在提供快速、准确的文本搜索解决方案，并具备持久化存储和日志记录功能，支持中文输出。
+Yat-Search Engine 是一个高效的文本搜索引擎，支持多文件加载、精确查询、模糊查询和正则表达式查询等功能。该项目旨在提供快速、准确的文本搜索解决方案，并具备持久化存储和日志记录功能，支持中文界面。
+
+## 项目背景
+
+中山大学计算机学院2024年秋季学期《数据结构与算法》课程大作业。
 
 ## 功能列表
 
@@ -14,7 +31,45 @@ Yat-Search Engine 是一个高效的文本搜索引擎，支持多文件加载�
 - **无限查询与退出功能**：支持持续查询，用户可随时退出。
 - **持久化存储**：保存和加载搜索索引。
 - **日志功能**：记录查询历史和操作日志。
-- **支持中文输出**：正确显示中文字符。
+- **支持中文输出**：正确显示中文字符。(还未完工)
+
+## 项目结构
+
+TextSearchEngine/
+
+│
+
+├── .vscode/  // VSCode 配置文件
+
+│   ├── c_cpp_properties.json
+
+│   ├── launch.json
+
+│   ├── tasks.json
+
+│   └── settings.json
+
+├── source-text/  // 存放文本文件
+
+│   ├── file1.txt
+
+│   ├── file2.txt
+
+│   └── ...  // 更多文本文件
+
+├── query_log.txt  // 查询操作日志
+
+├── logo_out.txt  // logo输出文件
+
+├── main.cpp   // 主程序入口
+
+├── TextSearchEngine.h  // 搜索引擎头文件
+
+├── TextSearchEngine.cpp   // 搜索引擎实现
+
+├── RegexSearch.h // 正则表达式搜索头文件
+
+└── RegexSearch.cpp  // 正则表达式搜索实现
 
 ## 功能改进过程(TODO)
 
@@ -43,11 +98,11 @@ Yat-Search Engine 是一个高效的文本搜索引擎，支持多文件加载�
 5. **无限查询,退出按钮** *(已完成)*
    - **改进过程**：在主循环中添加持续查询功能，用户可选择退出程序，确保用户体验的连贯性。
 
-6. **新的哈希函数**
+6. **新的哈希函数** *(已完成)*
    - **计划改进**：优化现有的 `CustomHash` 函数，提高哈希冲突的处理效率，以进一步提升查询性能。
 
-7. **支持多语言**
-   - **计划改进**：扩展系统的本地化支持，添加多语言界面，提升国际化用户的使用体验。
+7. **支持中文**
+   - **计划改进**：扩展系统的本地化支持，添加多语言界面，提升中国用户的使用体验。
 
 8. **性能优化与预处理** *(已完成)*
    - **改进过程**：优化索引结构和查询算法，减少搜索时间，并在加载文本时进行预处理，如去除停用词和统一大小写。
