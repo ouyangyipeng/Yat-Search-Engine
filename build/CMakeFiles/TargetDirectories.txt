@@ -1,3 +1,0 @@
-/workspaces/Yat-Search-Engine/build/CMakeFiles/rebuild_cache.dir
-/workspaces/Yat-Search-Engine/build/CMakeFiles/edit_cache.dir
-/workspaces/Yat-Search-Engine/build/CMakeFiles/YatSearchEngine.dir

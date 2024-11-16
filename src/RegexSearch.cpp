@@ -21,7 +21,7 @@ void RegexSearch::regexQuery(const std::vector<std::string> &sentences, const st
                 size_t length = match.length();
                 std::string marker(sentence.size(), ' ');
                 std::fill(marker.begin() + startPos, marker.begin() + startPos + length, '^');
-                std::string a = "        ";
+                std::string a = "\t";
                 marker.insert(0, a);
                 std::cout << marker << std::endl;
             }

@@ -11,7 +11,7 @@ void TextSearchEngine::saveIndex(const std::string &filepath)
     std::ofstream out(filepath, std::ios::binary);
     if (!out.is_open())
     {
-        std::ofstream logFile("./log/query_log.txt", std::ios::app);
+        std::ofstream logFile("../log/query_log.txt", std::ios::app);
         logFile << "无法打开文件以保存索引: " << filepath << std::endl;
         logFile.close();
         return;
@@ -43,7 +43,7 @@ void TextSearchEngine::saveIndex(const std::string &filepath)
         }
     }
     out.close();
-    std::ofstream logFile("./log/query_log.txt", std::ios::app);
+    std::ofstream logFile("../log/query_log.txt", std::ios::app);
     logFile << "索引已保存到 " << filepath << std::endl;
     logFile.close();
 }
@@ -53,7 +53,7 @@ void TextSearchEngine::loadIndex(const std::string &filepath)
     std::ifstream in(filepath, std::ios::binary);
     if (!in.is_open())
     {
-        std::ofstream logFile("./log/query_log.txt", std::ios::app);
+        std::ofstream logFile("../log/query_log.txt", std::ios::app);
         logFile << "无法打开索引文件: " << filepath << std::endl;
         logFile.close();
         return;
@@ -95,7 +95,7 @@ void TextSearchEngine::loadIndex(const std::string &filepath)
         exactIndex[word] = sentVec; // 将 index[word] 修改为 exactIndex[word]
     }
     in.close();
-    std::ofstream logFile("./log/query_log.txt", std::ios::app);
+    std::ofstream logFile("../log/query_log.txt", std::ios::app);
     logFile << "索引已从 " << filepath << " 加载" << std::endl;
     logFile.close();
 }
@@ -114,21 +114,37 @@ void TextSearchEngine::loadTexts(const std::vector<std::string> &files)
         std::string line;
         while (std::getline(infile, line))
         {
-            sentences.push_back(line);
-            // 索引精确查询
-            std::string word;
-            for (auto &c : line)
+            // ...existing code...
+            std::stringstream ss(line);
+            std::string sentence;
+            // 使用正则表达式分割句子，分隔符为 '.' 或 '。'
+            std::regex re("[。.]");
+            std::sregex_token_iterator iter(line.begin(), line.end(), re, -1);
+            std::sregex_token_iterator end;
+            while (iter != end)
             {
-                if (std::isalnum(c))
-                    word += std::tolower(c);
-                else if (!word.empty())
+                sentence = *iter;
+                if (!sentence.empty())
                 {
-                    exactIndex[word].push_back(sentences.size() - 1);
-                    word.clear();
+                    sentences.push_back(sentence);
+                    // 索引精确查询
+                    std::string word;
+                    for (auto &c : sentence)
+                    {
+                        if (std::isalnum(c))
+                            word += std::tolower(c);
+                        else if (!word.empty())
+                        {
+                            exactIndex[word].push_back(sentences.size() - 1);
+                            word.clear();
+                        }
+                    }
+                    if (!word.empty())
+                        exactIndex[word].push_back(sentences.size() - 1);
                 }
+                ++iter;
             }
-            if (!word.empty())
-                exactIndex[word].push_back(sentences.size() - 1);
+            // ...existing code...
         }
     }
 }
@@ -156,20 +172,20 @@ void TextSearchEngine::exactQuery(const std::string &keyword)
         std::cout << "精确查询结果 \"" << keyword << "\":" << std::endl;
         for (auto idx : it->second)
         {
-            std::cout << "\t" << sentences[idx] << "." << std::endl;
-            // 可视化匹配位置
-            size_t pos = sentences[idx].find(keyword);
+            const std::string &sentence = sentences[idx];
+            std::cout << "\t" << sentence << std::endl;
+
+            // 标出关键字的位置
+            std::string::size_type pos = sentence.find(keyword);
             if (pos != std::string::npos)
             {
-                std::string marker(sentences[idx].size(), ' ');
-                std::fill(marker.begin() + pos, marker.begin() + pos + keyword.length(), '^');
-                std::cout << "       " << marker << std::endl;
+                std::cout << "\t" << std::string(pos, ' ') << std::string(keyword.length(), '^') << std::endl;
             }
         }
     }
     else
     {
-        std::cout << "未找到精确匹配 \"" << keyword << "\" 的结果." << std::endl;
+        std::cout << "未找到关键字 \"" << keyword << "\" 的结果。" << std::endl;
     }
 }
 
@@ -188,7 +204,7 @@ void TextSearchEngine::fuzzyQuery(const std::string &keyword)
             {
                 std::string marker(sentences[i].size(), ' ');
                 std::fill(marker.begin() + pos, marker.begin() + pos + keyword.length(), '^');
-                std::cout << "       " << marker << std::endl;
+                std::cout << "\t" << marker << std::endl;
             }
         }
     }
@@ -197,7 +213,7 @@ void TextSearchEngine::fuzzyQuery(const std::string &keyword)
         std::cout << "未找到模糊匹配 \"" << keyword << "\" 的结果." << std::endl;
     }
     // 记录日志
-    std::ofstream logFile("./log/query_log.txt", std::ios::app);
+    std::ofstream logFile("../log/query_log.txt", std::ios::app);
     logFile << "模糊查询: " << keyword << " 执行完成" << std::endl;
     logFile.close();
 }
@@ -212,7 +228,7 @@ void TextSearchEngine::visualizeMatch(const std::string &sentence, const std::st
         std::string marker(sentence.size(), ' ');
         // 将标记字符串中关键字的位置替换为'^'
         std::fill(marker.begin() + pos, marker.begin() + pos + keyword.size(), '^');
-        std::string a = "        ";
+        std::string a = "\t";
         marker.insert(0, a);
         std::cout << marker << std::endl;
     }
@@ -220,5 +236,5 @@ void TextSearchEngine::visualizeMatch(const std::string &sentence, const std::st
 
 const std::vector<std::string> &TextSearchEngine::getSentences() const
 {
-    return sentences; // 返回句子列表
+    return sentences; // ��回句子列表
 }

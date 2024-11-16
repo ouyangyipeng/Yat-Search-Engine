@@ -55,6 +55,7 @@
         "numeric": "cpp",
         "random": "cpp",
         "shared_mutex": "cpp",
-        "cinttypes": "cpp"
+        "cinttypes": "cpp",
+        "iomanip": "cpp"
     }
 }

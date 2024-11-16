@@ -17,6 +17,12 @@
 
 Yat-Search Engine 是一个高效的文本搜索引擎，支持多文件加载、精确查询、模糊查询和正则表达式查询等功能。该项目旨在提供快速、准确的文本搜索解决方案，并具备持久化存储和日志记录功能，支持中文界面。
 
+需要注意的是，中文搜索仅可以通过“模糊搜索”选项完成，并且需要保证有"."符号于末尾。
+
+本项目仅供学习交流使用，请勿用于商业用途。原作者对于使用本项目所产生的任何后果概不负责。
+
+当前版本仍在开发中，部分功能可能尚未完全实现。欢迎贡献代码和提出建议！
+
 ## 项目背景
 
 中山大学计算机学院2024年秋季学期《数据结构与算法》课程大作业。
@@ -31,51 +37,57 @@ Yat-Search Engine 是一个高效的文本搜索引擎，支持多文件加载�
 - **无限查询与退出功能**：支持持续查询，用户可随时退出。
 - **持久化存储**：保存和加载搜索索引。
 - **日志功能**：记录查询历史和操作日志。
-- **支持中文输出**：正确显示中文字符。(还未完工)
+- **支持中文输出**：正确查找中文字符。(还未完工)
+- **编译方法由mingW改为cmake**：方便跨平台编译。
+- **输入all添加全部文件**：输入all可以加载所有文件。
 
 ## 项目结构
 
-TextSearchEngine/
+Yat-Search-Engine/
 
-│
+├── CMakeLists.txt
 
-├── .vscode/  // VSCode 配置文件
+├── LICENSE
 
-│   ├── c_cpp_properties.json
+├── dat
 
-│   ├── launch.json
+│   └── index.dat
 
-│   ├── tasks.json
+├── include
 
-│   └── settings.json
+│   ├── RegexSearch.h
 
-├── source-text/  // 存放文本文件
+│   └── TextSearchEngine.h
+
+├── log
+
+│   └── query_log.txt
+
+├── logo_pic
+
+│   ├── logo.txt
+
+│   └── logo_out.txt
+
+├── readme.md
+
+├── source-text
+
+│   ├── bible.txt
 
 │   ├── text1.txt
 
 │   ├── text2.txt
 
-│   └── ...  // 更多文本文件
+│   └── otherfile...
 
-├── log
+└── src
 
-│   └── query_log.txt  // 查询日志文件
+    ├── RegexSearch.cpp
 
-├── logo&pic
+    ├── TextSearchEngine.cpp
 
-│   ├── logo.txt  // 候选图标
-
-│   └── logo_out.txt  // 项目图标
-
-├── main.cpp   // 主程序入口
-
-├── TextSearchEngine.h  // 搜索引擎头文件
-
-├── TextSearchEngine.cpp   // 搜索引擎实现
-
-├── RegexSearch.h // 正则表达式搜索头文件
-
-└── RegexSearch.cpp  // 正则表达式搜索实现
+    └── main.cpp
 
 ## 功能改进过程(TODO)
 
@@ -107,8 +119,8 @@ TextSearchEngine/
 6. **新的哈希函数** *(已完成)*
    - **计划改进**：优化现有的 `CustomHash` 函数，提高哈希冲突的处理效率，以进一步提升查询性能。
 
-7. **支持中文**
-   - **计划改进**：扩展系统的本地化支持，添加多语言界面，提升中国用户的使用体验。
+7. **支持中文** *(已完成)*
+   - **计划改进**：扩展系统的本地化支持，添加多语言界面，提升中国用户的使用体验。但是由于正则表达式的限制，中文搜索仅可以通过“模糊搜索”选项完成，并且需要保证有"."符号于末尾。
 
 8. **性能优化与预处理** *(已完成)*
    - **改进过程**：优化索引结构和查询算法，减少搜索时间，并在加载文本时进行预处理，如去除停用词和统一大小写。
@@ -125,23 +137,31 @@ TextSearchEngine/
 12. **支持中文输出** *(已完成)*
     - **改进过程**：设置本地化环境，确保程序能够正确处理和显示中文字符，提升中文用户的使用体验。
 
+13. **编译方法由mingW改为cmake** *(已完成)*
+    - **改进过程**：由于使用.vscode编译的限制性很大（例如我无法在codespace中编译），将编译方法由mingW改为cmake，方便跨平台编译。
+
+14. **输入all添加全部文件** *(已完成)*
+    - **改进过程**：在输入文件名时，输入all可以加载所有文件。
+
 ## 使用方法
 
-### 推荐方法 - 使用VSCode
+### 克隆项目
 
-本代码库已配置了 `.vscode` 文件夹，您可以克隆到本地后直接在 VSCode 中打开本项目。
+ ```bash
+git clone https://github.com/ouyangyipeng/Yat-Search-Engine.git
+cd Yat-Search-Engine
+```
 
-需要注意的是，您需要安装mingW编译器，并在.vscode文件夹中的c_cpp_properties.json和task/launch的三个文件中修改g++等路径为您的mingW安装路径。
+### 推荐编译运行方法 - 使用Cmake编译
 
-当您在vscode中安装了C/C++插件后，您可以直接在vscode中按F5运行本项目。这样生成的可执行文件为Output.exe。
-
-### 编译项目(备选)
-
-假如选择使用命令行进行编译，确保已安装支持 C++17 的编译器，如 `g++` 或 `clang++`。C++17以下的编译器可能无法编译成功。
+确保已安装 CMake 和支持 C++17 的编译器，如 `g++` 或 `clang++`。cmakelists.txt文件已经配置好了编译选项，只需执行以下命令即可编译项目。注意默认编译器位于`/usr/bin/g++`，如需使用其他编译器请修改CMakeLists.txt文件。
 
 ```bash
-g++ -std=c++17 main.cpp TextSearchEngine.cpp RegexSearch.cpp -o YatSearchEngine
-// 编译生成YatSearchEngine.exe可执行文件
+mkdir build  # 假如没有build文件夹
+cd build
+cmake ..
+cmake --build .
+./YatSearchEngine
 ```
 
 ### 运行程序

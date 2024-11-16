@@ -7,6 +7,7 @@
 #include <vector>
 #include <string>
 #include <codecvt>
+#include <filesystem>
 
 /*
     ! 基础功能:
@@ -30,12 +31,15 @@
 
 int main()
 {
-    // TODO: 支持中文输入输出 未完成
+    // TODO: 支持中文输入输出 windows未完成，linux已完成
     // 设置本地化以支持中文输入输出
     // std::wcin.imbue(std::locale("zh_CN.UTF-8"));
     // std::wcout.imbue(std::locale("zh_CN.UTF-8"));
-
-    std::ifstream infile("./logo&pic/logo_out.txt");
+    std::cout << "Current working directory: "
+              << std::filesystem::current_path() << std::endl;
+    auto root_path = std::filesystem::current_path().parent_path(); // 因为 build/ 是工作目录
+    auto file_path = root_path / "logo_pic/logo_out.txt";
+    std::ifstream infile(file_path);
     if (infile.is_open())
     {
         std::string line;
@@ -51,7 +55,7 @@ int main()
     }
     std::cout << std::endl;
     std::cout << "欢迎使用Yat-Search Engine文本搜索引擎！" << std::endl;
-    std::cout << "作者：Fernandez Owen  版本：v1.3.0" << std::endl;
+    std::cout << "作者：Fernandez Owen  版本：v1.4.1" << std::endl;
     std::cout << "-----------------------------重要说明-------------------------------" << std::endl;
     std::cout << "1. 本程序使用预加载上一次查询的index.dat文件来加速搜索，每次使用请确认您是否跟上次查询的文件一致，如果一致则可以直接运行程序，否则请先删除index.dat文件再运行程序。" << std::endl;
     std::cout << "2. 请确保您的源文件夹中的文件名不包含空格，否则可能会导致程序无法正常运行。" << std::endl;
@@ -59,7 +63,7 @@ int main()
     std::cout << "--------------------------请按回车以继续-----------------------------" << std::endl;
     std::cin.get();
 
-    std::ofstream logFile("./log/query_log.txt", std::ios::app);
+    std::ofstream logFile("../log/query_log.txt", std::ios::app);
     TextSearchEngine engine;
 
     // 加载 source-text 文件夹中的多个文件
@@ -67,8 +71,18 @@ int main()
     std::string filename;
     while (true)
     {
-        std::cout << "请问您要查找哪些文件？输入文件名（.txt），输入 'done' 完成输入：";
+        std::cout << "请问您要查找哪些文件？\n输入文件名（.txt），每次输入一个并回车；\n输入 'all' 加载全部文件\n输入 'done' 完成输入：";
         std::cin >> filename;
+
+        if (filename == "all")
+        {
+            for (const auto &entry : std::filesystem::directory_iterator("../source-text/"))
+            {
+                files.push_back(entry.path().string());
+            }
+            std::cout << "已添加全部文件。\n";
+            break;
+        }
 
         if (filename == "done")
         {
@@ -82,7 +96,7 @@ int main()
             continue;
         }
 
-        std::string filepath = "source-text/" + filename;
+        std::string filepath = "../source-text/" + filename;
         std::cout << "已添加文件: " << filepath << "\n";
 
         std::ifstream file(filepath);
@@ -102,7 +116,7 @@ int main()
 
     engine.loadTexts(files);
 
-    std::cout << "欢迎使用文本搜索引擎！\n";
+    std::cout << "欢迎使用Yat Search Engine！\n";
     std::cout << "功能说明：\n1. 精确查询:输入一个单词，查询在什么位置出现了这个单词\n2. 模糊查询:输入为一个单词中有,输出该词组所在的句子和位置\n3. 正则查询:按照正则表达式规则进行匹配\n4. 退出查询：退出程序\n";
 
     bool running = true;
@@ -160,7 +174,7 @@ int main()
             break;
         case 4:
             running = false;
-            engine.saveIndex("./dat/index.dat");
+            engine.saveIndex("../dat/index.dat");
             logFile << "退出程序" << std::endl;
             break;
         default:

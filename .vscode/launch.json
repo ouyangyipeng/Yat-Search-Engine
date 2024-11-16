@@ -2,21 +2,20 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "(gdb) Launch",
-            "preLaunchTask": "g++.exe build all files", // 调试前执行多文件编译任务
-            "type": "cppdbg", // 配置类型为 cppdbg
-            "request": "launch", // 请求类型为启动
-            "program": "${workspaceFolder}/output.exe", // 调试程序的路径（编译后的可执行文件）
-            "args": [], // 如果有参数要传递给程序，可以在这里添加
-            "stopAtEntry": false, // 不需要在入口处停下来
-            "cwd": "${workspaceFolder}", // 工作目录为当前工作空间文件夹
-            "environment": [], // 如果有环境变量需要配置可以在这里添加
-            "externalConsole": true, // true 表示使用外置控制台窗口
-            "MIMode": "gdb", // 调试模式为 gdb
-            "miDebuggerPath": "D:\\Programm\\x86_64-8.1.0-release-posix-seh-rt_v6-rev0\\mingw64\\bin\\gdb.exe", // gdb 的路径
+            "name": "Launch TextSearchEngine",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/YatSearchEngine",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "/usr/bin/gdb",
             "setupCommands": [
                 {
-                    "description": "Enable pretty-printing for gdb", // 启用 gdb 的 pretty-printing 功能
+                    "description": "Enable pretty-printing for gdb",
                     "text": "-enable-pretty-printing",
                     "ignoreFailures": true
                 }
