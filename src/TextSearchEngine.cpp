@@ -6,6 +6,8 @@
 #include <regex>
 #include <cctype>
 
+
+// 保存已经查询过的句子
 void TextSearchEngine::saveIndex(const std::string &filepath)
 {
     std::ofstream out(filepath, std::ios::binary);
@@ -18,7 +20,7 @@ void TextSearchEngine::saveIndex(const std::string &filepath)
     }
     // 保存句子数量
     size_t sentenceCount = sentences.size();
-    out.write(reinterpret_cast<char *>(&sentenceCount), sizeof(sentenceCount));
+    out.write(reinterpret_cast<char *>(&sentenceCount), sizeof(sentenceCount)); // 使用reinterpret_cast主要是为了解决指针类型转换的问题
     // 保存每个句子
     for (const auto &sentence : sentences)
     {
@@ -48,8 +50,10 @@ void TextSearchEngine::saveIndex(const std::string &filepath)
     logFile.close();
 }
 
+// 加载索引
 void TextSearchEngine::loadIndex(const std::string &filepath)
 {
+
     std::ifstream in(filepath, std::ios::binary);
     if (!in.is_open())
     {
@@ -100,8 +104,10 @@ void TextSearchEngine::loadIndex(const std::string &filepath)
     logFile.close();
 }
 
+
 void TextSearchEngine::loadTexts(const std::vector<std::string> &files)
 {
+
     for (const auto &file : files)
     {
         std::ifstream infile(file);
@@ -118,7 +124,7 @@ void TextSearchEngine::loadTexts(const std::vector<std::string> &files)
             std::stringstream ss(line);
             std::string sentence;
             // 使用正则表达式分割句子，分隔符为 '.' 或 '。'
-            std::regex re("[。.]");
+            std::regex re(u8"[。.]");
             std::sregex_token_iterator iter(line.begin(), line.end(), re, -1);
             std::sregex_token_iterator end;
             while (iter != end)
@@ -144,7 +150,6 @@ void TextSearchEngine::loadTexts(const std::vector<std::string> &files)
                 }
                 ++iter;
             }
-            // ...existing code...
         }
     }
 }
@@ -236,5 +241,5 @@ void TextSearchEngine::visualizeMatch(const std::string &sentence, const std::st
 
 const std::vector<std::string> &TextSearchEngine::getSentences() const
 {
-    return sentences; // ��回句子列表
+    return sentences; // 返回回句子列表
 }

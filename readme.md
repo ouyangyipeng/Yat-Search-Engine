@@ -5,7 +5,6 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/ouyangyipeng/Yat-Search-Engine/blob/main/LICENSE)
 ![Static Badge](https://img.shields.io/badge/Sun_Yat_sen-University-green)
 ![Static Badge](https://img.shields.io/badge/Ouyang-Yipeng-blue)
-[![Forks](https://img.shields.io/github/forks/ouyangyipeng/Yat-Search-Engine)](https://github.com/ouyangyipeng/Yat-Search-Engine/network/members)
 [![Stars](https://img.shields.io/github/stars/ouyangyipeng/Yat-Search-Engine)](https://github.com/ouyangyipeng/Yat-Search-Engine/stargazers)
 [![Code Size](https://img.shields.io/github/languages/code-size/ouyangyipeng/Yat-Search-Engine)](https://github.com/ouyangyipeng/Yat-Search-Engine)
 [![Top Language](https://img.shields.io/github/languages/top/ouyangyipeng/Yat-Search-Engine)](https://github.com/ouyangyipeng/Yat-Search-Engine)
@@ -13,11 +12,11 @@
 
 ## 项目简介
 
-Yat-Search Engine 是一个高效的文本搜索引擎，支持多文件加载、精确查询、模糊查询和正则表达式查询等功能。该项目旨在提供快速、准确的文本搜索解决方案，并具备持久化存储和日志记录功能，支持中文界面。
+Yat-Search Engine 是一个高效的文本搜索引擎，支持多文件加载、精确查询、模糊查询和正则表达式查询等功能。该项目旨在提供快速、准确的文本搜索解决方案，并具备持久化存储和日志记录功能，支持中文界面、中文文档查询。
 
-需要注意的是，中文搜索仅可以通过“模糊搜索”选项完成，并且需要保证有"."符号于末尾。
+需要注意的是，由于c++本身对于中文的兼容性较差（尤其是非linux/unix环境），目前中文搜索仅可以通过“模糊搜索”选项完成，并且需要在linux环境进行相关配置，下文会详细介绍。
 
-本项目仅供学习交流使用，请勿用于商业用途。原作者对于使用本项目所产生的任何后果概不负责。
+本项目仅供学习交流使用，请勿用于其他用途。原作者对于使用本项目所产生的任何后果概不负责。
 
 当前版本仍在开发中，部分功能可能尚未完全实现。欢迎贡献代码和提出建议！
 
@@ -25,7 +24,7 @@ Yat-Search Engine 是一个高效的文本搜索引擎，支持多文件加载�
 
 中山大学计算机学院2024年秋季学期《数据结构与算法》课程大作业。
 
-当前版本：v1.4.0
+当前版本：v1.5.0  最新 /12.11（linux中文完整版）
 
 ## 功能列表
 
@@ -76,7 +75,7 @@ Yat-Search Engine 是一个高效的文本搜索引擎，支持多文件加载�
 ### 基础功能
 
 1. **哈希表包含查询** v1.0.0
-   - **改进过程**：实现自定义哈希函数 `CustomHash`，并在 `TextSearchEngine` 中使用 `unordered_map` 结合该哈希函数，以优化查询性能。
+   - **改进过程**：实现自定义哈希函数 `oyypHash`，并在 `TextSearchEngine` 中使用 `unordered_map` 结合该哈希函数，以优化查询性能。
 
 2. **文件读取** v1.0.1
    - **改进过程**：完善文件读取机制，确保能够正确读取和解析多个文本文件，并将内容索引到搜索引擎中。
@@ -94,6 +93,7 @@ Yat-Search Engine 是一个高效的文本搜索引擎，支持多文件加载�
 
 4. **可视化搜索结果，如模仿编译器报错的方式** *(已完成)* v1.2.0
    - **改进过程**：在查询结果中，使用符号 `^` 标记关键词在句子中的位置，类似编译器的错误指示，增强可读性。
+   - 但是目前只支持英文，中文会出现位置不准确的问题。
 
 5. **无限查询,退出按钮** *(已完成)* v1.2.1
    - **改进过程**：在主循环中添加持续查询功能，用户可选择退出程序，确保用户体验的连贯性。
@@ -101,7 +101,7 @@ Yat-Search Engine 是一个高效的文本搜索引擎，支持多文件加载�
 6. **新的哈希函数** *(已完成)* v1.3.1
    - **计划改进**：优化现有的 `CustomHash` 函数，提高哈希冲突的处理效率，以进一步提升查询性能。
 
-7. **支持中文** *(已完成)* v1.4.0
+7. **支持中文（简化版）** *(已完成)* v1.4.0
    - **计划改进**：扩展系统的本地化支持，添加多语言界面，提升中国用户的使用体验。但是由于正则表达式的限制，中文搜索仅可以通过“模糊搜索”选项完成，并且需要保证有"."符号于末尾。
 
 8. **性能优化与预处理** *(已完成)* v1.3.1
@@ -116,7 +116,7 @@ Yat-Search Engine 是一个高效的文本搜索引擎，支持多文件加载�
 11. **日志功能，记录查询历史等** *(已完成)*  v1.3.2
     - **改进过程**：在每次查询和重要操作后，将相关信息记录到 `query_log.txt`，便于用户查看历史记录和调试。
 
-12. **支持中文输出** *(已完成)*  v1.4.0
+12. **支持中文输出** *(已完成)*  v1.4.1
     - **改进过程**：设置本地化环境，确保程序能够正确处理和显示中文字符，提升中文用户的使用体验。
 
 13. **编译方法由mingW改为cmake** *(已完成)* v1.4.0
@@ -125,15 +125,53 @@ Yat-Search Engine 是一个高效的文本搜索引擎，支持多文件加载�
 14. **输入all添加全部文件** *(已完成)* v1.4.0
     - **改进过程**：在输入文件名时，输入all可以加载所有文件。
 
+15. **支持中文（完整版）** *(已完成)* v1.5.0 最新/12.11
+    - **计划改进**：完善中文搜索功能，支持中文文档的模糊查询，提升中文用户的使用体验。
+
 ## 使用方法
 
 ### 克隆项目
 
 请确保在linux环境下运行，windows环境下可能会出现中文乱码问题。进入工作目录并克隆项目到本地：
 
- ```bash
+```bash
 git clone https://github.com/ouyangyipeng/Yat-Search-Engine.git
 cd Yat-Search-Engine
+```
+
+### 设置中文环境
+
+由于c++本身对于中文的兼容性较差，目前中文搜索仅可以通过“模糊搜索”选项完成，并且需要在linux环境进行相关配置。具体操作如下：
+
+1. 检查系统是否支持中文环境：
+
+```bash
+locale -a
+```
+
+如果输出中包含 `zh_CN.UTF-8`，说明系统支持中文。否则，需要安装中文语言包。
+
+2. 如果系统支持中文环境，可以直接运行程序。如果系统不支持，需要locale中文语言包：
+
+```bash
+sudo locale-gen zh_CN.UTF-8
+sudo update-locale
+```
+
+注意，当前本文默认使用utf8编码的中文，如果需要修改成gb2312或其他，请自行在源代码中的textsearchengine类的生成函数中改一下locale的设置。
+
+3. 再次检查系统是否支持中文环境：
+
+```bash
+locale -a
+```
+
+如果输出中包含 `zh_CN.UTF-8`，说明生成中文环境成功。
+
+如果前面已经进行过cmake，推荐先进行清理
+
+```bash
+make clean
 ```
 
 ### 推荐编译运行方法 - 使用Cmake编译
@@ -147,6 +185,8 @@ cmake ..
 cmake --build .
 ./YatSearchEngine
 ```
+
+如果需要重新编译，只需执行 `cmake --build .` 即可。
 
 ### 运行程序
 

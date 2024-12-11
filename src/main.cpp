@@ -115,6 +115,7 @@ int main()
     }
 
     engine.loadTexts(files);
+    engine.loadIndex("../index.dat");
 
     std::cout << "欢迎使用Yat Search Engine！\n";
     std::cout << "功能说明：\n1. 精确查询:输入一个单词，查询在什么位置出现了这个单词\n2. 模糊查询:输入为一个单词中有,输出该词组所在的句子和位置\n3. 正则查询:按照正则表达式规则进行匹配\n4. 退出查询：退出程序\n";
