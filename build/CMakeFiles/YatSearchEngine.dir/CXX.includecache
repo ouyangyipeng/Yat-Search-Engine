@@ -1,0 +1,42 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/TextSearchEngine.h
+string
+-
+vector
+-
+unordered_map
+-
+functional
+-
+locale
+-
+codecvt
+-
+fstream
+-
+iostream
+-
+
+/workspaces/Yat-Search-Engine/src/TextSearchEngine.cpp
+TextSearchEngine.h
+/workspaces/Yat-Search-Engine/src/TextSearchEngine.h
+iostream
+-
+fstream
+-
+sstream
+-
+algorithm
+-
+regex
+-
+cctype
+-
+
