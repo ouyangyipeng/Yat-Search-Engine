@@ -35,11 +35,19 @@
 
 int main()
 {
+    // 设置全局区域设置
+    std::locale::global(std::locale("zh_CN.UTF-8"));
+
+    // 为标准输出流设置区域设置
+    std::cout.imbue(std::locale());
+    std::cin.imbue(std::locale());
+
     std::cout << "Current working directory: "
               << std::filesystem::current_path() << std::endl;
     auto root_path = std::filesystem::current_path().parent_path(); // 因为 build/ 是工作目录
     auto file_path = root_path / "logo_pic/logo_out.txt";
     std::ifstream infile(file_path);
+    infile.imbue(std::locale());
     if (infile.is_open())
     {
         std::string line;
@@ -69,6 +77,8 @@ int main()
     std::cin.get();
 
     std::ofstream logFile("../log/query_log.txt", std::ios::app);
+
+    logFile.imbue(std::locale());
     TextSearchEngine engine;
 
     // 加载 source-text 文件夹中的多个文件
@@ -108,6 +118,7 @@ int main()
         std::cout << "已添加文件: " << filepath << "\n";
 
         std::ifstream file(filepath);
+        file.imbue(std::locale());
         if (!file.is_open())
         {
             std::cout << "无法打开文件: " << filepath << "。请检查是否放入目标文件夹。\n";

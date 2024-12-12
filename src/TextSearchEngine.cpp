@@ -5,12 +5,14 @@
 #include <algorithm>
 #include <regex>
 #include <cctype>
+#include <locale>
 
 
 // 保存已经查询过的句子
 void TextSearchEngine::saveIndex(const std::string &filepath)
 {
     std::ofstream out(filepath, std::ios::binary);
+    out.imbue(std::locale());
     if (!out.is_open())
     {
         std::ofstream logFile("../log/query_log.txt", std::ios::app);
@@ -55,6 +57,7 @@ void TextSearchEngine::loadIndex(const std::string &filepath)
 {
 
     std::ifstream in(filepath, std::ios::binary);
+    in.imbue(std::locale());
     if (!in.is_open())
     {
         std::ofstream logFile("../log/query_log.txt", std::ios::app);
@@ -111,6 +114,7 @@ void TextSearchEngine::loadTexts(const std::vector<std::string> &files)
     for (const auto &file : files)
     {
         std::ifstream infile(file);
+        infile.imbue(std::locale());
         if (!infile)
         {
             std::cerr << "无法打开文件: " << file << std::endl;

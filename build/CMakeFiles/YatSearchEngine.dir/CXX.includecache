@@ -38,12 +38,22 @@ fstream
 iostream
 -
 
-/workspaces/Yat-Search-Engine/src/RegexSearch.cpp
-RegexSearch.h
-/workspaces/Yat-Search-Engine/src/RegexSearch.h
+/workspaces/Yat-Search-Engine/src/TextSearchEngine.cpp
+TextSearchEngine.h
+/workspaces/Yat-Search-Engine/src/TextSearchEngine.h
 iostream
 -
+fstream
+-
+sstream
+-
+algorithm
+-
 regex
+-
+cctype
+-
+locale
 -
 
 /workspaces/Yat-Search-Engine/src/main.cpp
