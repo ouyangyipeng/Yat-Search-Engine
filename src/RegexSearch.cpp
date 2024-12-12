@@ -39,3 +39,39 @@ void RegexSearch::regexQuery(const std::vector<std::string> &sentences, const st
         std::cerr << "正则表达式错误: " << e.what() << std::endl; // 学到了，原来正则搜索的try catch格式是标准的
     }
 }
+
+void RegexSearch::chineseRegexQuery(const std::vector<std::string> &sentences, const std::string &pattern)
+{
+    try
+    {
+        std::regex regexPattern(pattern);
+        std::cout << "中文正则查询结果 \"" << pattern << "\":" << std::endl;
+        bool found = false;
+
+        for (const auto &sentence : sentences)
+        {
+            std::smatch match;
+            if (std::regex_search(sentence, match, regexPattern))
+            {
+                std::cout << "\t" << sentence << "。" << std::endl;
+                found = true;
+                // size_t startPos = match.position();
+                // size_t length = match.length();
+                // std::string marker(sentence.size(), ' '); // 又到了标准的可视化环节咯
+                // std::fill(marker.begin() + startPos, marker.begin() + startPos + length, '^');
+                // std::string a = "\t";
+                // marker.insert(0, a);
+                // std::cout << marker << std::endl;
+            }
+        }
+
+        if (!found)
+        {
+            std::cout << "未找到中文正则匹配 \"" << pattern << "\" 的结果." << std::endl;
+        }
+    }
+    catch (const std::regex_error &e)
+    {
+        std::cerr << "正则表达式错误: " << e.what() << std::endl;
+    }
+}

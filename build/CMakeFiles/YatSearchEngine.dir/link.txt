@@ -1,1 +1,1 @@
-/usr/bin/g++     CMakeFiles/YatSearchEngine.dir/src/main.cpp.o CMakeFiles/YatSearchEngine.dir/src/TextSearchEngine.cpp.o CMakeFiles/YatSearchEngine.dir/src/RegexSearch.cpp.o  -o YatSearchEngine 
+/usr/bin/g++  -g   CMakeFiles/YatSearchEngine.dir/src/main.cpp.o CMakeFiles/YatSearchEngine.dir/src/TextSearchEngine.cpp.o CMakeFiles/YatSearchEngine.dir/src/RegexSearch.cpp.o  -o YatSearchEngine 

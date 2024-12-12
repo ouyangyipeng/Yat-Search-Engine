@@ -50,6 +50,8 @@ public:
     void fuzzyQuery(const std::string &keyword);
     // 正则表达式查询（现在已经单独开了一个文件）
     // void regexQuery(const std::string &pattern);
+    // 中文查询
+    void chineseQuery(const std::string &keyword);
     // 获取句子
     const std::vector<std::string> &getSentences() const;
     // 持久化存储

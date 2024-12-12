@@ -1,0 +1,17 @@
+[
+{
+  "directory": "/workspaces/Yat-Search-Engine/build",
+  "command": "/usr/bin/g++   -I/workspaces/Yat-Search-Engine/include  -g   -std=gnu++17 -o CMakeFiles/YatSearchEngine.dir/src/main.cpp.o -c /workspaces/Yat-Search-Engine/src/main.cpp",
+  "file": "/workspaces/Yat-Search-Engine/src/main.cpp"
+},
+{
+  "directory": "/workspaces/Yat-Search-Engine/build",
+  "command": "/usr/bin/g++   -I/workspaces/Yat-Search-Engine/include  -g   -std=gnu++17 -o CMakeFiles/YatSearchEngine.dir/src/TextSearchEngine.cpp.o -c /workspaces/Yat-Search-Engine/src/TextSearchEngine.cpp",
+  "file": "/workspaces/Yat-Search-Engine/src/TextSearchEngine.cpp"
+},
+{
+  "directory": "/workspaces/Yat-Search-Engine/build",
+  "command": "/usr/bin/g++   -I/workspaces/Yat-Search-Engine/include  -g   -std=gnu++17 -o CMakeFiles/YatSearchEngine.dir/src/RegexSearch.cpp.o -c /workspaces/Yat-Search-Engine/src/RegexSearch.cpp",
+  "file": "/workspaces/Yat-Search-Engine/src/RegexSearch.cpp"
+}
+]

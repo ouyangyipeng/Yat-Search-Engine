@@ -223,6 +223,37 @@ void TextSearchEngine::fuzzyQuery(const std::string &keyword)
     logFile.close();
 }
 
+void TextSearchEngine::chineseQuery(const std::string &keyword)
+{
+    std::cout << "中文查询结果 \"" << keyword << "\":" << std::endl;
+    bool found = false;
+    for (size_t i = 0; i < sentences.size(); ++i)
+    {
+        if (sentences[i].find(keyword) != std::string::npos)
+        {
+            std::cout << "\t" << sentences[i] << "。" << std::endl;
+            found = true;
+            size_t pos = sentences[i].find(keyword);
+            // if (pos != std::string::npos)
+            // {
+            //     std::string marker(sentences[i].size(), ' ');
+            //     std::string::iterator ch1 = (marker.begin() + pos);
+            //     std::string::iterator ch2 = (marker.begin() + pos + keyword.length());
+            //     std::fill(marker.begin() + pos, marker.begin() + pos + keyword.length(), '^');
+            //     std::cout << "\t" << marker << std::endl;
+            // }
+        }
+    }
+    if (!found)
+    {
+        std::cout << "未找到中文匹配 \"" << keyword << "\" 的结果." << std::endl;
+    }
+    // 记录日志
+    std::ofstream logFile("../log/query_log.txt", std::ios::app);
+    logFile << "中文查询: " << keyword << " 执行完成" << std::endl;
+    logFile.close();
+}
+
 void TextSearchEngine::visualizeMatch(const std::string &sentence, const std::string &keyword)
 {
     size_t pos = sentence.find(keyword);

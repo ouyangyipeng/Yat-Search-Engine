@@ -1,3 +1,5 @@
+<img src="logo_pic/logo.png" alt="Logo" width="600"/>
+
 # Yat-Search Engine 文本搜索引擎
 
 > *Searching Engine from Sun Yat-sen University*
