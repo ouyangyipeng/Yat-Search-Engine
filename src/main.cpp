@@ -31,6 +31,9 @@
     (done)TODO:完整版中文
     TODO:支持其他文件格式，例如PDF
     (done)TODO:查询耗时输出
+    (done)TODO:支持中文正则
+    TODO:手动决定是否删除dat文件
+    TODO:不使用unordered map，自己实现一个哈希
 */
 
 int main()
