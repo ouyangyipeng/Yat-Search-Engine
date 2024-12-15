@@ -4,7 +4,6 @@
 #include <string>
 #include <vector>
 #include <utility>
-#include <unordered_map>
 
 struct oyypHash
 {
@@ -25,7 +24,7 @@ struct oyypHash
 
 class HashTable {
 public:
-    HashTable(size_t size = 1024); // 默认大小1024
+    HashTable(size_t size = 102400); // 默认大小102400
     // void insert(std::string &key, size_t value);
     // std::vector<size_t> find(std::string &key) const;
     // void remove(std::string &key, size_t value);
@@ -39,7 +38,7 @@ public:
     // 这个是全部里面最麻烦的部分 去网上查了很久才搞懂咋自定义
     // 迭代器在原本unordered_map里面被使用的情况比我想的还要多
     // 我甚至写tse文件的时候都没意识到for循环里面auto迭代就是用的迭代器
-    // 并里面必须实现begin和end函数 不然没法自动
+    // 并里面必须实现begin和end函数 不然没法自动然后
     class iterator {
     public:
         // 构造函数

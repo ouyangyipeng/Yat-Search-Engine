@@ -146,11 +146,11 @@ int main()
         return 0;
     }
 
-    std::cout << "欢迎使用Yat Search Engine！\n";
+    std::cout << "文件加载完毕，欢迎使用Yat Search Engine进行查询！\n";
     std::cout << std::endl;
     std::cout << "功能说明：" << std::endl;
     std::cout << "1. 精确查询:输入一个单词，查询在什么位置出现了这个单词" << std::endl;
-    std::cout << "2. 模糊查询:输入为一个单词中有,输出该词组所在的句子和位置" << std::endl;
+    std::cout << "2. 模糊查询:输入为一个单词中的一个部分,输出该词组所在的句子和位置" << std::endl;
     std::cout << "3. 正则查询:按照正则表达式规则进行匹配" << std::endl;
     std::cout << "4. 中文查询:查询任意中文字符或词组" << std::endl;
     std::cout << "5. 中文正则:按照正则表达式来查询中文" << std::endl;
@@ -229,7 +229,7 @@ int main()
         }
         case 4:
         {
-            std::cout << "输入关键词: ";
+            std::cout << "输入中文关键词: ";
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             std::getline(std::cin, input);
             auto start = std::chrono::high_resolution_clock::now();
@@ -242,7 +242,7 @@ int main()
         }
         case 5:
         {
-            std::cout << "输入关键词: ";
+            std::cout << "输入中文正则表达式: ";
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             std::getline(std::cin, input);
             auto start = std::chrono::high_resolution_clock::now();

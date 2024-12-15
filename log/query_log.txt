@@ -265,3 +265,18 @@
 精确查询: earth
 索引已保存到 ../dat/index.dat
 退出程序
+索引已保存到 ../dat/index.dat
+退出程序
+索引已保存到 ../dat/index.dat
+退出程序
+索引已从 ../dat/index.dat 加载
+索引已保存到 ../dat/index.dat
+退出程序
+精确查询: man
+索引已保存到 ../dat/index.dat
+退出程序
+索引已从 ../dat/index.dat 加载
+精确查询: a
+精确查询: man
+索引已保存到 ../dat/index.dat
+退出程序
