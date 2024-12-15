@@ -5,9 +5,14 @@ CMakeFiles/YatSearchEngine.dir/src/RegexSearch.cpp.o: ../include/RegexSearch.h
 CMakeFiles/YatSearchEngine.dir/src/RegexSearch.cpp.o: ../src/RegexSearch.cpp
 
 CMakeFiles/YatSearchEngine.dir/src/TextSearchEngine.cpp.o: ../include/TextSearchEngine.h
+CMakeFiles/YatSearchEngine.dir/src/TextSearchEngine.cpp.o: ../include/oyyphash.h
 CMakeFiles/YatSearchEngine.dir/src/TextSearchEngine.cpp.o: ../src/TextSearchEngine.cpp
 
 CMakeFiles/YatSearchEngine.dir/src/main.cpp.o: ../include/RegexSearch.h
 CMakeFiles/YatSearchEngine.dir/src/main.cpp.o: ../include/TextSearchEngine.h
+CMakeFiles/YatSearchEngine.dir/src/main.cpp.o: ../include/oyyphash.h
 CMakeFiles/YatSearchEngine.dir/src/main.cpp.o: ../src/main.cpp
+
+CMakeFiles/YatSearchEngine.dir/src/oyyphash.cpp.o: ../include/oyyphash.h
+CMakeFiles/YatSearchEngine.dir/src/oyyphash.cpp.o: ../src/oyyphash.cpp
 

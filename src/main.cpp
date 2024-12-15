@@ -1,5 +1,6 @@
 #include "TextSearchEngine.h"
 #include "RegexSearch.h"
+#include "oyyphash.h"
 #include <iostream>
 #include <limits>
 #include <locale>
@@ -32,8 +33,7 @@
     TODO:支持其他文件格式，例如PDF
     (done)TODO:查询耗时输出
     (done)TODO:支持中文正则
-    TODO:手动决定是否删除dat文件
-    TODO:不使用unordered map，自己实现一个哈希
+    (done)TODO:不使用unordered map，自己实现一个哈希
 */
 
 int main()
@@ -66,16 +66,13 @@ int main()
     }
     std::cout << std::endl;
     std::cout << "欢迎使用Yat-Search Engine文本搜索引擎！" << std::endl;
-    std::cout << "作者：Fernandez Owen  版本：v1.5.1" << std::endl;
+    std::cout << "作者：Fernandez Owen  版本：v1.6.0" << std::endl;
     std::cout << "-----------------------------重要说明-------------------------------" << std::endl;
-    std::cout << "1. 本程序使用预加载上一次查询的index.dat文件来加速搜索，每次使用请确认您" << std::endl;
-    std::cout << "   即将查询的文件是否跟上次查询的文件一致，如果一致则可以直接运行程序，否" << std::endl;
-    std::cout << "   则请先删除index.dat文件再运行程序。" << std::endl;
-    std::cout << "2. 请确保您的源文件夹中的文件名不包含空格，否则可能在某些环境下会导致程序" << std::endl;
+    std::cout << "1. 请确保您的源文件夹中的文件名不包含空格，否则可能在某些环境下会导致程序" << std::endl;
     std::cout << "   无法正常运行。" << std::endl;
-    std::cout << "3. 请将需要查询的源文件放入source-text文件夹中，以txt形式存放。请保证文" << std::endl;
+    std::cout << "2. 请将需要查询的源文件放入source-text文件夹中，以txt形式存放。请保证文" << std::endl;
     std::cout << "   件以UTF-8格式存放，否则可能导致乱码。" << std::endl;
-    std::cout << "4. 如果需要查询中文，请使用中文查询的两个模式。中文查询暂不支持可视化输出。" << std::endl;
+    std::cout << "3. 如果需要查询中文，请使用中文查询的两个模式。中文查询暂不支持可视化输出。" << std::endl;
     std::cout << "--------------------------请按回车以继续-----------------------------" << std::endl;
     std::cin.get();
 
@@ -84,61 +81,70 @@ int main()
     logFile.imbue(std::locale());
     TextSearchEngine engine;
 
+    std::cout << "请问是否沿用曾经的查询文件？[Y/N]" << std::endl;
+    char choice;
+    std::cin >> choice;
     // 加载 source-text 文件夹中的多个文件
-    std::vector<std::string> files;
-    std::string filename;
-    while (true)
-    {
-        std::cout << "请问您要查找哪些文件？" << std::endl;
-        std::cout << "输入文件名（.txt），每次输入一个并回车；" << std::endl;
-        std::cout << "输入 'all' 加载全部文件" << std::endl;
-        std::cout << "输入 'done' 完成输入：";
-        std::cin >> filename;
-
-        if (filename == "all")
+    if(choice == 'N' || choice == 'n'){
+        std::vector<std::string> files;
+        std::string filename;
+        while (true)
         {
-            for (const auto &entry : std::filesystem::directory_iterator("../source-text/"))
+            std::cout << "请问您要查找哪些文件？" << std::endl;
+            std::cout << "输入文件名（.txt），每次输入一个并回车；" << std::endl;
+            std::cout << "输入 'all' 加载全部文件" << std::endl;
+            std::cout << "输入 'done' 完成输入：";
+            std::cin >> filename;
+
+            if (filename == "all")
             {
-                files.push_back(entry.path().string());
+                for (const auto &entry : std::filesystem::directory_iterator("../source-text/")) // 这个遍历文件夹的迭代器也挺好使
+                {
+                    files.push_back(entry.path().string());
+                }
+                std::cout << "已添加全部文件。\n";
+                break;
             }
-            std::cout << "已添加全部文件。\n";
-            break;
+
+            if (filename == "done")
+            {
+                break;
+            }
+
+            // 检查文件扩展名是否为 .txt
+            if (filename.size() < 4 || filename.substr(filename.size() - 4) != ".txt")
+            {
+                std::cout << "无效的文件扩展名，请确保文件以 .txt 结尾。\n";
+                continue;
+            }
+
+            std::string filepath = "../source-text/" + filename;
+            std::cout << "已添加文件: " << filepath << "\n";
+
+            std::ifstream file(filepath);
+            file.imbue(std::locale());
+            if (!file.is_open())
+            {
+                std::cout << "无法打开文件: " << filepath << "。请检查是否放入目标文件夹。\n";
+                continue;
+            }
+            files.push_back(filepath);
         }
 
-        if (filename == "done")
+        if (files.empty())
         {
-            break;
+            std::cout << "未选择任何文件，程序即将退出。\n";
+            return 0;
         }
-
-        // 检查文件扩展名是否为 .txt
-        if (filename.size() < 4 || filename.substr(filename.size() - 4) != ".txt")
-        {
-            std::cout << "无效的文件扩展名，请确保文件以 .txt 结尾。\n";
-            continue;
-        }
-
-        std::string filepath = "../source-text/" + filename;
-        std::cout << "已添加文件: " << filepath << "\n";
-
-        std::ifstream file(filepath);
-        file.imbue(std::locale());
-        if (!file.is_open())
-        {
-            std::cout << "无法打开文件: " << filepath << "。请检查是否放入目标文件夹。\n";
-            continue;
-        }
-        files.push_back(filepath);
-    }
-
-    if (files.empty())
-    {
-        std::cout << "未选择任何文件，程序即将退出。\n";
+        std::cout << std::endl;
+        
+        engine.loadTexts(files);
+    }else if(choice == 'Y' || choice == 'y'){
+        engine.loadIndex("../dat/index.dat");
+    }else{
+        std::cout << "无效输入，程序即将退出。\n";
         return 0;
     }
-    std::cout << std::endl;
-    
-    engine.loadTexts(files);
-    engine.loadIndex("../index.dat");
 
     std::cout << "欢迎使用Yat Search Engine！\n";
     std::cout << std::endl;

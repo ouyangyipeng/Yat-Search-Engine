@@ -13,5 +13,10 @@
   "directory": "/workspaces/Yat-Search-Engine/build",
   "command": "/usr/bin/g++   -I/workspaces/Yat-Search-Engine/include  -g   -std=gnu++17 -o CMakeFiles/YatSearchEngine.dir/src/RegexSearch.cpp.o -c /workspaces/Yat-Search-Engine/src/RegexSearch.cpp",
   "file": "/workspaces/Yat-Search-Engine/src/RegexSearch.cpp"
+},
+{
+  "directory": "/workspaces/Yat-Search-Engine/build",
+  "command": "/usr/bin/g++   -I/workspaces/Yat-Search-Engine/include  -g   -std=gnu++17 -o CMakeFiles/YatSearchEngine.dir/src/oyyphash.cpp.o -c /workspaces/Yat-Search-Engine/src/oyyphash.cpp",
+  "file": "/workspaces/Yat-Search-Engine/src/oyyphash.cpp"
 }
 ]

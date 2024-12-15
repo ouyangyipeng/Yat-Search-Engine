@@ -204,6 +204,33 @@ src/main.cpp.s:
 	$(MAKE) -f CMakeFiles/YatSearchEngine.dir/build.make CMakeFiles/YatSearchEngine.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/oyyphash.o: src/oyyphash.cpp.o
+
+.PHONY : src/oyyphash.o
+
+# target to build an object file
+src/oyyphash.cpp.o:
+	$(MAKE) -f CMakeFiles/YatSearchEngine.dir/build.make CMakeFiles/YatSearchEngine.dir/src/oyyphash.cpp.o
+.PHONY : src/oyyphash.cpp.o
+
+src/oyyphash.i: src/oyyphash.cpp.i
+
+.PHONY : src/oyyphash.i
+
+# target to preprocess a source file
+src/oyyphash.cpp.i:
+	$(MAKE) -f CMakeFiles/YatSearchEngine.dir/build.make CMakeFiles/YatSearchEngine.dir/src/oyyphash.cpp.i
+.PHONY : src/oyyphash.cpp.i
+
+src/oyyphash.s: src/oyyphash.cpp.s
+
+.PHONY : src/oyyphash.s
+
+# target to generate assembly for a file
+src/oyyphash.cpp.s:
+	$(MAKE) -f CMakeFiles/YatSearchEngine.dir/build.make CMakeFiles/YatSearchEngine.dir/src/oyyphash.cpp.s
+.PHONY : src/oyyphash.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -222,6 +249,9 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/oyyphash.o"
+	@echo "... src/oyyphash.i"
+	@echo "... src/oyyphash.s"
 .PHONY : help
 
 

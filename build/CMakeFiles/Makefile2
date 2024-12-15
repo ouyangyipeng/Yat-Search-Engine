@@ -74,12 +74,12 @@ clean: CMakeFiles/YatSearchEngine.dir/clean
 CMakeFiles/YatSearchEngine.dir/all:
 	$(MAKE) -f CMakeFiles/YatSearchEngine.dir/build.make CMakeFiles/YatSearchEngine.dir/depend
 	$(MAKE) -f CMakeFiles/YatSearchEngine.dir/build.make CMakeFiles/YatSearchEngine.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/workspaces/Yat-Search-Engine/build/CMakeFiles --progress-num=1,2,3,4 "Built target YatSearchEngine"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/workspaces/Yat-Search-Engine/build/CMakeFiles --progress-num=1,2,3,4,5 "Built target YatSearchEngine"
 .PHONY : CMakeFiles/YatSearchEngine.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/YatSearchEngine.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /workspaces/Yat-Search-Engine/build/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /workspaces/Yat-Search-Engine/build/CMakeFiles 5
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/YatSearchEngine.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /workspaces/Yat-Search-Engine/build/CMakeFiles 0
 .PHONY : CMakeFiles/YatSearchEngine.dir/rule

@@ -3,29 +3,30 @@
 
 #include <string>
 #include <vector>
-#include <unordered_map>
+// #include <unordered_map>
 #include <functional>
 #include <locale>
 #include <codecvt>
 #include <fstream>
 #include <iostream>
+#include "oyyphash.h"
 
-struct oyypHash
-{
-    size_t operator()(const std::string &key) const
-    {
-        // 我在网上查到这个 FNV-1a 哈希算法分布均匀，冲突率低，并且计算速度快
-        const size_t fnv_prime = 0x100000001b3;
-        const size_t fnv_offset_basis = 0xcbf29ce484222325;
-        size_t hash = fnv_offset_basis;
-        for (char c : key)
-        {
-            hash ^= static_cast<size_t>(c);
-            hash *= fnv_prime;
-        }
-        return hash;
-    }
-};
+// struct oyypHash
+// {
+//     size_t operator()(const std::string &key) const
+//     {
+//         // 我在网上查到这个 FNV-1a 哈希算法分布均匀，冲突率低，并且计算速度快
+//         const size_t fnv_prime = 0x100000001b3;
+//         const size_t fnv_offset_basis = 0xcbf29ce484222325;
+//         size_t hash = fnv_offset_basis;
+//         for (char c : key)
+//         {
+//             hash ^= static_cast<size_t>(c);
+//             hash *= fnv_prime;
+//         }
+//         return hash;
+//     }
+// };
 
 class TextSearchEngine
 {
@@ -62,7 +63,11 @@ private:
     // 句子集合
     std::vector<std::string> sentences;
     // 使用自定义哈希函数
-    std::unordered_map<std::string, std::vector<size_t>, oyypHash> exactIndex; // 才知道这个哈希函数自定义是这样使用，放在第三个参数中
+    // std::unordered_map<std::string, std::vector<size_t>, oyypHash> exactIndex; // 才知道这个哈希函数自定义是这样使用，放在第三个参数中
+
+    // 自定义哈希表oyyphash
+    HashTable exactIndex;
+
 
     // 索引句子
     // void indexSentence(const std::string &sentence);

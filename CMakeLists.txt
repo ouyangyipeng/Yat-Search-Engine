@@ -16,6 +16,7 @@ set(SOURCES
     src/main.cpp
     src/TextSearchEngine.cpp
     src/RegexSearch.cpp
+    src/oyyphash.cpp
 )
 
 # 添加可执行文件
