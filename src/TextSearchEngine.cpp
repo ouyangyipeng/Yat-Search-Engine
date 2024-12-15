@@ -156,7 +156,7 @@ void TextSearchEngine::loadTexts(const std::vector<std::string> &files)
                             word.clear();
                         }
                     }
-                    if (!word.empty())
+                    if (!word.empty()) // 处理最后没搞完的
                         exactIndex[word].push_back(sentences.size() - 1);
                 }
                 ++iter; // 这个迭代器的自增比我想的方便点
@@ -165,30 +165,18 @@ void TextSearchEngine::loadTexts(const std::vector<std::string> &files)
     }
 }
 
-void TextSearchEngine::indexSentence(const std::string &sentence)
-{
-    std::istringstream ss(sentence);
-    std::string word;
-    // 逐词读取句子内容
-    while (ss >> word)
-    {
-        // 将单词转换为小写
-        std::transform(word.begin(), word.end(), word.begin(), ::tolower);
-        exactIndex[word].push_back(sentences.size() - 1); // 将 index[word].push_back(sentence) 修改为 exactIndex[word].push_back(sentences.size() - 1)
-    }
-}
 
 void TextSearchEngine::exactQuery(const std::string &keyword)
 {
     std::string key = keyword;
-    std::transform(key.begin(), key.end(), key.begin(), ::tolower);
-    auto it = exactIndex.find(key);
-    if (it != exactIndex.end())
+    std::transform(key.begin(), key.end(), key.begin(), ::tolower);// 转小写 和上面对应
+    auto it = exactIndex[key]; // 核心功能 查找哈希表
+    if (!it.empty())// 原本这里使用了find和end 但是发现不方便改自定义哈希
     {
         std::cout << "精确查询结果 \"" << keyword << "\":" << std::endl;
-        for (auto idx : it->second)
+        for (auto idx : it)
         {
-            const std::string &sentence = sentences[idx];
+            const std::string &sentence = sentences[idx];// 当前单词在哪里
             std::cout << "\t" << sentence << std::endl;
 
             // 标出关键字的位置
@@ -212,6 +200,9 @@ void TextSearchEngine::exactQuery(const std::string &keyword)
     }
 }
 
+
+// 用单词的一部分来查找 在大规模文件中很能体现时间上的速度
+// 但是这里就不方便用哈希表了，所以这里就直接遍历句子列表了
 void TextSearchEngine::fuzzyQuery(const std::string &keyword)
 {
     std::cout << "模糊查询结果 \"" << keyword << "\":" << std::endl;
@@ -241,6 +232,7 @@ void TextSearchEngine::fuzzyQuery(const std::string &keyword)
     logFile.close();
 }
 
+// 实质上就是把中文的分隔符加上去了，其他的和上面的fuzzyQuery一样
 void TextSearchEngine::chineseQuery(const std::string &keyword)
 {
     std::cout << "中文查询结果 \"" << keyword << "\":" << std::endl;
@@ -272,23 +264,37 @@ void TextSearchEngine::chineseQuery(const std::string &keyword)
     logFile.close();
 }
 
-void TextSearchEngine::visualizeMatch(const std::string &sentence, const std::string &keyword)
-{
-    size_t pos = sentence.find(keyword);
-    // 如果句子中包含关键字
-    if (pos != std::string::npos)
-    {
-        // 创建一个与句子等长的标记字符串
-        std::string marker(sentence.size(), ' ');
-        // 将标记字符串中关键字的位置替换为'^'
-        std::fill(marker.begin() + pos, marker.begin() + pos + keyword.size(), '^');
-        std::string a = "\t";
-        marker.insert(0, a);
-        std::cout << marker << std::endl;
-    }
-}
-
 const std::vector<std::string> &TextSearchEngine::getSentences() const
 {
     return sentences; // 返回回句子列表
 }
+
+// void TextSearchEngine::visualizeMatch(const std::string &sentence, const std::string &keyword)
+// {
+//     size_t pos = sentence.find(keyword);
+//     // 如果句子中包含关键字
+//     if (pos != std::string::npos)
+//     {
+//         // 创建一个与句子等长的标记字符串
+//         std::string marker(sentence.size(), ' ');
+//         // 将标记字符串中关键字的位置替换为'^'
+//         std::fill(marker.begin() + pos, marker.begin() + pos + keyword.size(), '^');
+//         std::string a = "\t";
+//         marker.insert(0, a);
+//         std::cout << marker << std::endl;
+//     }
+// }
+
+
+// void TextSearchEngine::indexSentence(const std::string &sentence)
+// {
+//     std::istringstream ss(sentence);
+//     std::string word;
+//     // 逐词读取句子内容
+//     while (ss >> word)
+//     {
+//         // 将单词转为小写
+//         std::transform(word.begin(), word.end(), word.begin(), ::tolower);
+//         exactIndex[word].push_back(sentences.size() - 1);
+//     }
+// }

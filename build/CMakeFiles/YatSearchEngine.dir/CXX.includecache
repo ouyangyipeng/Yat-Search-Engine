@@ -6,6 +6,20 @@
 
 #IncludeRegexTransform: 
 
+../include/RegexSearch.h
+string
+-
+vector
+-
+locale
+-
+codecvt
+-
+fstream
+-
+iostream
+-
+
 ../include/TextSearchEngine.h
 string
 -
@@ -40,5 +54,29 @@ regex
 cctype
 -
 locale
+-
+
+/workspaces/Yat-Search-Engine/src/main.cpp
+TextSearchEngine.h
+/workspaces/Yat-Search-Engine/src/TextSearchEngine.h
+RegexSearch.h
+/workspaces/Yat-Search-Engine/src/RegexSearch.h
+iostream
+-
+limits
+-
+locale
+-
+fstream
+-
+vector
+-
+string
+-
+codecvt
+-
+filesystem
+-
+chrono
 -
 

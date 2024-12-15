@@ -65,9 +65,9 @@ private:
     std::unordered_map<std::string, std::vector<size_t>, oyypHash> exactIndex; // 才知道这个哈希函数自定义是这样使用，放在第三个参数中
 
     // 索引句子
-    void indexSentence(const std::string &sentence);
+    // void indexSentence(const std::string &sentence);
     // 可视化匹配（但是有一部分现在直接挪到查找函数里面去了）
-    void visualizeMatch(const std::string &sentence, const std::string &keyword);
+    // void visualizeMatch(const std::string &sentence, const std::string &keyword);
 };
 
 #endif
